@@ -25,10 +25,24 @@ Route::get('/admin/code','Admin\LoginController@code');
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台首页
     Route::get('/index','IndexController@index');
+    //退出登录
     Route::get('/quit','LoginController@quit');
+    //修改密码
     Route::any('/pass','IndexController@pass');
+    //测试方法
     Route::any('/test','IndexController@test');
-    Route::any('/article','ArticleController@show');
+    //文章分类
     Route::resource('/category','CategoryController');
+    //文章管理
+    Route::resource('/article','ArticleController');
+    //修改分类排序
     Route::get('/changeOrder/{cate_id}/cate_order/{cate_order}','CategoryController@changeOrder');
+    //上传图片
+    Route::any('/upload','CommonController@upload');
+    //文章审核
+    Route::get('/shenhe/{art_id}','ArticleController@shenhe');
+    //文章上架
+    Route::get('/up/{art_id}','ArticleController@up');
+    //文章下架
+    Route::get('/stop/{art_id}','ArticleController@stop');
 });

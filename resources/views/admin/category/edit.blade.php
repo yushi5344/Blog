@@ -15,7 +15,6 @@
         <form action="" method="post" class="form form-horizontal" id="form-category-edit">
             {{csrf_field()}}
             <input type="hidden" value="{{$data->cate_pid}}" class="cate_pid">
-            <input type="hidden" value="{{$data->cate_id}}" name="cate_id">
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>父级分类：</label>
                 <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
@@ -101,7 +100,7 @@
                 success:"valid",
                 submitHandler:function(form){
                     $(form).ajaxSubmit({
-                        url:"{{url('admin/category/update')}}",
+                        url:"{{url('admin/category/'.$data->cate_id)}}",
                         type:'put',
                         success:function(data){
                             if(data.status==1){

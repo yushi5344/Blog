@@ -16,7 +16,7 @@ class CreateBlogArticlesTable extends Migration
         Schema::create('blog_articles',function(Blueprint $table){
             $table->increments('art_id')->index();
             $table->integer('art_pid');
-            $table->integer('author_id')->index();
+            $table->string('art_author',100);
             $table->string('art_title',100);
             $table->string('art_tag',50);
             $table->string('art_desc');
@@ -24,6 +24,7 @@ class CreateBlogArticlesTable extends Migration
             $table->text('art_content');
             $table->timestamp('art_time');
             $table->integer('art_view')->default(0);
+            $table->integer('is_show')->default(1);
         });
     }
 

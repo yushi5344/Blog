@@ -137,8 +137,7 @@ class CategoryController extends CommonController
         ];
         $validator=Validator::make($input,$rules,$messages);
         if($validator->passes()){
-            $category=new Category();
-            $re=$category->save($input);
+            $re=Category::where('cate_id',$id)->update($input);
             if($re){
                 $data=[
                     'status'=>1,
