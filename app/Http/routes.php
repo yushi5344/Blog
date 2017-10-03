@@ -45,4 +45,18 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
     Route::get('/up/{art_id}','ArticleController@up');
     //文章下架
     Route::get('/stop/{art_id}','ArticleController@stop');
+    //友情链接
+    Route::resource('/links','LinksController');
+    //修改友情链接排序
+    Route::get('/changeLinkOrder/{link_id}/link_order/{link_order}','LinksController@changeOrder');
+    //导航
+    Route::resource('/navs','NavsController');
+    //修改导航排序
+    Route::get('/changeNavOrder/{nav_id}/nav_order/{nav_order}','NavsController@changeOrder');
+    //网站配置
+    Route::resource('/conf','ConfigController');
+    //修改配置顺序
+    Route::get('/changeConfOrder/{conf_id}/conf_order/{conf_order}','ConfigController@changeOrder');
+    Route::post('/multi_edit','ConfigController@multiEdit');
+    Route::get('/gen_conf','ConfigController@putFile');
 });

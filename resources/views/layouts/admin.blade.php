@@ -91,20 +91,26 @@
             </dd>
         </dl>
         <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe613;</i> 友情链接管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="picture-list.html" title="图片管理">图片管理</a></li>
+                    <li><a href="{{url('admin/links')}}" title="友情链接列表">友情链接列表</a></li>
                 </ul>
             </dd>
         </dl>
         <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe620;</i> 导航管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="product-brand.html" title="品牌管理">品牌管理</a></li>
-                    <li><a href="product-category.html" title="分类管理">分类管理</a></li>
-                    <li><a href="product-list.html" title="产品管理">产品管理</a></li>
+                    <li><a href="{{url('admin/navs')}}" title="导航列表">导航列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl id="menu-product">
+            <dt><i class="Hui-iconfont">&#xe620;</i> 配置管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a href="{{url('admin/conf')}}" title="配置列表">配置列表</a></li>
                 </ul>
             </dd>
         </dl>
@@ -159,7 +165,7 @@
             <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="system-base.html" title="系统设置">系统设置</a></li>
+                    <li><a href="{{url('admin/conf')}}" title="系统设置">系统设置</a></li>
                     <li><a href="system-category.html" title="栏目管理">栏目管理</a></li>
                     <li><a href="system-data.html" title="数据字典">数据字典</a></li>
                     <li><a href="system-shielding.html" title="屏蔽词">屏蔽词</a></li>
