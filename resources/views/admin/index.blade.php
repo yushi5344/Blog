@@ -94,10 +94,12 @@
                     <td>服务器端口 </td>
                     <td>{{$_SERVER['SERVER_PORT']}}</td>
                 </tr>
+                @if(PATH_SEPARATOR==';')
                 <tr>
                     <td>服务器版本 </td>
                     <td>{{$_SERVER['SERVER_SOFTWARE']}}</td>
                 </tr>
+                @endif
                 <tr>
                     <td>本文件所在文件夹 </td>
                     <td>D:\WebSite\HanXiPuTai.com\XinYiCMS.Web\</td>
