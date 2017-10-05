@@ -60,6 +60,7 @@ class ArticleController extends CommonController
     {
         //
         $input=Input::except('_token','file');
+        $input['art_time']=date('Y-m-d H:i:s');
         $rules=[
             'art_title'=>'required',
             'art_pid'=>'required',

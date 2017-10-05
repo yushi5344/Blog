@@ -11,15 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
+    Route::get('/', 'IndexController@index');
+    Route::get('/article/{art_id}', 'ArticleController@index');
+    Route::get('/cate/{cate_id}', 'ArticleController@cate');
+
 });
 
-//后台登录
-Route::any('/admin/login','Admin\LoginController@login');
 
-//验证码路由
-Route::get('/admin/code','Admin\LoginController@code');
+Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],function(){
+    //后台登录
+    Route::any('/login','LoginController@login');
+
+    //验证码路由
+    Route::get('/code','LoginController@code');
+});
 
 
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=>'Admin'],function(){

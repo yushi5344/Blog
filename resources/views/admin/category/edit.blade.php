@@ -14,17 +14,11 @@
     <article class="cl pd-20">
         <form action="" method="post" class="form form-horizontal" id="form-category-edit">
             {{csrf_field()}}
-            <input type="hidden" value="{{$data->cate_pid}}" class="cate_pid">
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>父级分类：</label>
-                <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-				<select class="select" name="cate_pid" size="1">
-                    <option value="0">顶级分类</option>
-                    @foreach($cate as $v)
-                        <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
-                    @endforeach
-                </select>
-				</span> </div>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="{{$data->cate_name}}" placeholder="请输入分类名称"  name="cate_name">
+                </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>排序：</label>
@@ -32,12 +26,7 @@
                     <input type="text" class="input-text" value="{{$data->cate_order}}" placeholder="" name="cate_order" style="width: 27%;">
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="{{$data->cate_name}}" placeholder="请输入分类名称"  name="cate_name">
-                </div>
-            </div>
+
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类标题：</label>
                 <div class="formControls col-xs-8 col-sm-9">
@@ -72,29 +61,22 @@
     <script type="text/javascript" src="{{asset('resources/views/admin/lib/jquery.validation/1.14.0/messages_zh.js')}}"></script>
     <script type="text/javascript">
         $(function(){
-            $('select[name=cate_pid] option').each(function(){
-                if($('.cate_pid').val()==$(this).val()){
-                    $(this).attr('selected','selected');
-                }
-            });
-            if($('.cate_pid').val()==0){
-                $('select[name=cate_pid]').attr('disabled','disabled').css('background','#eee');
-            }
+
             $("#form-category-edit").validate({
-//                rules:{
-//                    cate_name:{
-//                        required:true,
-//                        minlength:4,
-//                        maxlength:16
-//                    },
-//                    cate_order:{
-//                        required:true,
-//                        isNumber:true
-//                    },
-//                    cate_title:{
-//                        required:true,
-//                    }
-//                },
+                rules:{
+                    cate_name:{
+                        required:true,
+                        minlength:4,
+                        maxlength:16
+                    },
+                    cate_order:{
+                        required:true,
+                        isNumber:true
+                    },
+                    cate_title:{
+                        required:true,
+                    }
+                },
                 onkeyup:false,
                 focusCleanup:true,
                 success:"valid",

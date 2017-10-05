@@ -99,11 +99,6 @@
                 parent.layer.close(index);
             }
 
-            $('select[name=art_pid] option').each(function(){
-                if($(this).attr('data')=='0'){
-                    $(this).attr('disabled','disabled');
-                }
-            });
             $list = $("#fileList"),
                     $btn = $("#btn-star"),
                     state = "pending",

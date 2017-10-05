@@ -15,15 +15,10 @@
         <form action="" method="post" class="form form-horizontal" id="form-category-add">
             {{csrf_field()}}
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>父级分类：</label>
-                <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-				<select class="select" name="cate_pid" size="1">
-                    <option value="0">顶级分类</option>
-                    @foreach($cate as $v)
-                        <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
-                    @endforeach
-                </select>
-				</span> </div>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="请输入分类名称"  name="cate_name">
+                </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>排序：</label>
@@ -31,12 +26,7 @@
                     <input type="text" class="input-text" value="" placeholder="" name="cate_order" style="width: 27%;">
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="请输入分类名称"  name="cate_name">
-                </div>
-            </div>
+
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类标题：</label>
                 <div class="formControls col-xs-8 col-sm-9">
@@ -75,7 +65,7 @@
                 rules:{
                     cate_name:{
                         required:true,
-                        minlength:4,
+                        minlength:2,
                         maxlength:16
                     },
                     cate_order:{

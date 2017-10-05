@@ -96,11 +96,6 @@
             parent.layer.close(index);
         }
         $(function(){
-            $('select[name=art_pid] option').each(function(){
-                if($(this).attr('data')=='0'){
-                    $(this).attr('disabled','disabled');
-                }
-            });
             $list = $("#fileList"),
                     $btn = $("#btn-star"),
                     state = "pending",
@@ -207,30 +202,30 @@
             var ue = UE.getEditor('editor');
 
             $("#form-article-edit").validate({
-//                rules:{
-//                    art_title:{
-//                        required:true
-//                    },
-//                    art_pid:{
-//                        required:true
-//                    },
-//                    art_author:{
-//                        required:true,
-//                    },
-//                    art_thumb:{
-//                        required:true,
-//                    },
-//                    art_tag:{
-//                        required:true,
-//                    },
-//
-//                    art_desc:{
-//                        required:true,
-//                    },
-//                    art_content:{
-//                        required:true,
-//                    }
-//                },
+                rules:{
+                    art_title:{
+                        required:true
+                    },
+                    art_pid:{
+                        required:true
+                    },
+                    art_author:{
+                        required:true,
+                    },
+                    art_thumb:{
+                        required:true,
+                    },
+                    art_tag:{
+                        required:true,
+                    },
+
+                    art_desc:{
+                        required:true,
+                    },
+                    art_content:{
+                        required:true,
+                    }
+                },
                 onkeyup:false,
                 focusCleanup:true,
                 success:"valid",

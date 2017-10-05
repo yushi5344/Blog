@@ -35,8 +35,7 @@ class CategoryController extends CommonController
     public function create()
     {
         //
-        $cate=DB::table('blog_category')->where('cate_pid','=',0)->get();
-        return view('admin.category.add')->with('cate',$cate);
+        return view('admin.category.add');
     }
 
     /**
@@ -50,13 +49,13 @@ class CategoryController extends CommonController
         //
         $input=Input::except('_token');
         $rules=[
-            'cate_name'=>'required|between:4,16',
+            'cate_name'=>'required|between:2,16',
             'cate_order'=>'required|integer',
             'cate_title'=>'required'
         ];
         $messages=[
             'cate_name.required'=>'分类名称不能为空',
-            'cate_name.between'=>'分类名称在4到16位之间',
+            'cate_name.between'=>'分类名称在2到16位之间',
             'cate_order.required'=>'排序不能为空',
             'cate_order.integer'=>'排序必须为整数',
             'cate_title.required'=>'分类标题不能为空',
@@ -107,9 +106,8 @@ class CategoryController extends CommonController
      */
     public function edit($id)
     {
-       $data=Category::find($id);
-        $cate=DB::table('blog_category')->where('cate_pid','=',0)->get();
-        return view('admin.category.edit',compact('data','cate'));
+        $data=Category::find($id);
+        return view('admin.category.edit',compact('data'));
     }
 
     /**
@@ -124,13 +122,13 @@ class CategoryController extends CommonController
         //
         $input=Input::except('_token');
         $rules=[
-            'cate_name'=>'required|between:4,16',
+            'cate_name'=>'required|between:2,16',
             'cate_order'=>'required|integer',
             'cate_title'=>'required'
         ];
         $messages=[
             'cate_name.required'=>'分类名称不能为空',
-            'cate_name.between'=>'分类名称在4到16位之间',
+            'cate_name.between'=>'分类名称在2到16位之间',
             'cate_order.required'=>'排序不能为空',
             'cate_order.integer'=>'排序必须为整数',
             'cate_title.required'=>'分类标题不能为空',
@@ -171,7 +169,6 @@ class CategoryController extends CommonController
     {
         //
         $re=Category::where('cate_id',$cate_id)->delete();
-        Category::where('cate_pid',$cate_id)->update(['cate_pid'=>0]);
         if($re){
             $data=[
                 'status'=>1,
