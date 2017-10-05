@@ -94,6 +94,12 @@
                     <td>服务器端口 </td>
                     <td>{{$_SERVER['SERVER_PORT']}}</td>
                 </tr>
+
+                    <tr>
+                        <td>服务器版本 </td>
+                        <td>{{$_SERVER['SERVER_SOFTWARE']}}</td>
+                    </tr>
+
                 <tr>
                     <td>本文件所在文件夹 </td>
                     <td>D:\WebSite\HanXiPuTai.com\XinYiCMS.Web\</td>
@@ -102,10 +108,13 @@
                     <td>服务器操作系统 </td>
                     <td>{{ PHP_OS }}</td>
                 </tr>
+                {{--linux下不存在此变量，服务器报错--}}
+                @if(PATH_SEPARATOR==';')
                 <tr>
                     <td>系统所在文件夹 </td>
                     <td>{{$_SERVER['SystemRoot']}}</td>
                 </tr>
+                @endif
                 <tr>
                     <td>服务器脚本超时时间 </td>
                     <td>{{get_cfg_var('max_execution_time')}}秒</td>
