@@ -24,7 +24,7 @@ class CreateBlogArticlesTable extends Migration
             $table->text('art_content');
             $table->dateTime('art_time');
             $table->integer('art_view')->default(0);
-            $table->integer('is_show')->default(1);
+            $table->integer('is_show')->default(0);
             $table->integer('is_pass')->default(0);
         });
     }

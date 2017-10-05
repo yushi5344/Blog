@@ -4486,5 +4486,8 @@
 			ul.dates{
 				padding-left: 0;
 			}
+			ul.dates p.art_view{
+				display: none;
+			}
 		}
 	/*}*/

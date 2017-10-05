@@ -18,7 +18,8 @@
                     <li>
                         <span class="date">{{date('M',strtotime($v->art_time))}} <strong>{{date('d',strtotime($v->art_time))}}</strong></span>
                         <h3><a href="{{url('/article/'.$v->art_id)}}">{{$v->art_title}}</a></h3>
-                        <p>点击量：{{$v->art_view}}　　　标签：{{$v->art_tag}} </p>
+                        <p class="art_view">点击量：{{$v->art_view}} </p>
+                        <p>标签：{{$v->art_tag}}</p>
                     </li>
                     @endforeach
                  @else
