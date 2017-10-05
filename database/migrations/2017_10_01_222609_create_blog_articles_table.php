@@ -22,9 +22,10 @@ class CreateBlogArticlesTable extends Migration
             $table->string('art_desc');
             $table->string('art_thumb');
             $table->text('art_content');
-            $table->timestamp('art_time');
+            $table->dateTime('art_time');
             $table->integer('art_view')->default(0);
             $table->integer('is_show')->default(1);
+            $table->integer('is_pass')->default(0);
         });
     }
 

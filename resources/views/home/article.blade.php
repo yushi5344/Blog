@@ -44,7 +44,7 @@
                     <!-- Break -->
                     <div class="12u$">
                         <ul class="actions">
-                            <li><input type="submit" value="Send Message" class="special" /></li>
+                            <li><input type="button" value="Send Message" class="special" /></li>
                             <li><input type="reset" value="Reset" /></li>
                         </ul>
                     </div>
@@ -63,6 +63,10 @@
                     $('.links li').removeClass('active');
                     $(this).addClass('active');
                 }
+            });
+            $('.special').click(function(){
+                alert('此功能尚未开发');
+                return false;
             });
         });
     </script>

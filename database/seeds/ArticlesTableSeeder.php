@@ -14,7 +14,7 @@ class ArticlesTableSeeder extends Seeder
         //
         for($i=1;$i<30;$i++){
             DB::table('blog_articles')->insert([
-                'art_pid'=>13,
+                'art_pid'=>1,
                 'art_title'=>'title',
                 'art_author'=>'guomin',
                 'art_tag'=>'体育',
