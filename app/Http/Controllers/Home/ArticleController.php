@@ -21,7 +21,7 @@ class ArticleController extends CommonController
 
     public function cate($id){
         $catename=Category::where('cate_id',$id)->value('cate_name');
-       $article=Article::where(['art_pid'=>$id,'is_pass'=>1])->paginate(10);
+       $article=Article::where(['art_pid'=>$id,'is_pass'=>1])->paginate(5);
        return view('home.cate',compact('article','catename'));
     }
 }
