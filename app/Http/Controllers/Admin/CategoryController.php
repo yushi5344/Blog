@@ -39,10 +39,11 @@ class CategoryController extends CommonController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @Desc:添加新分类
+     * @author:guomin
+     * @date:2017-10-07 15:14
+     * @param Request $request
+     * @return array
      */
     public function store(Request $request)
     {
@@ -111,11 +112,12 @@ class CategoryController extends CommonController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @Desc:修改
+     * @author:guomin
+     * @date:2017-10-07 15:14
+     * @param Request $request
+     * @param $id 分类id
+     * @return array
      */
     public function update(Request $request, $id)
     {
@@ -160,10 +162,11 @@ class CategoryController extends CommonController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @Desc:删除分类
+     * @author:guomin
+     * @date:2017-10-07 15:15
+     * @param $cate_id
+     * @return array
      */
     public function destroy($cate_id)
     {
@@ -184,11 +187,12 @@ class CategoryController extends CommonController
     }
 
     /**
-     * @Desc:ajax无刷新修改排序
+     * @Desc:分类排序
      * @author:guomin
-     * @date:2017-10-01 15:31
-     * @param $cate_id 分类id
-     * @param $cate_order 排序字段
+     * @date:2017-10-07 15:15
+     * @param $cate_id
+     * @param $cate_order
+     * @return array
      */
     public function changeOrder($cate_id,$cate_order){
         $category=Category::find($cate_id);

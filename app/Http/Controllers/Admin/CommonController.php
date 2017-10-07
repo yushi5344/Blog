@@ -12,6 +12,13 @@ class CommonController extends Controller
 {
     //
 
+    /**
+     * @Desc:文件上传
+     * @author:guomin
+     * @date:2017-10-07 15:13
+     * @param Request $request
+     * @return string 上传路径
+     */
     public function upload(Request $request)
     {
         // Make sure file is not cached (as it happens for example on iOS devices)

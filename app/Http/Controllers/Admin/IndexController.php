@@ -21,6 +21,12 @@ class IndexController extends CommonController{
        return view('admin.index')->with('Info',\App\Http\Model\User::find(session('user')->user_id));
     }
 
+    /**
+     * @Desc:修改密码
+     * @author:guomin
+     * @date:2017-10-07 15:12
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pass(){
         if($input=Input::all()){
             $rules=[
@@ -39,7 +45,7 @@ class IndexController extends CommonController{
                 $password=Crypt::decrypt($user->user_pass);
                 if($password==$input['oldpass']){
                     $user->user_pass=Crypt::encrypt($input['password']);
-                     echo $user->update();
+                    echo $user->update();
                 }else{
                     echo 0;
                 }

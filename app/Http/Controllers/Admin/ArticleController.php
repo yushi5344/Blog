@@ -14,26 +14,16 @@ use Illuminate\Support\Facades\Validator;
 class ArticleController extends CommonController
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @Desc:首页显示
+     * @author:guomin
+     * @date:2017-10-07 15:24
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //$data=Article::orderBy('art_id','asc')->paginate(5);
-        $data=DB::table('blog_articles')
-            ->leftJoin('blog_category','blog_articles.art_pid','=','blog_category.cate_id')
-            ->select('blog_category.cate_name',
-                     'blog_articles.art_id',
-                    'blog_articles.art_pid',
-                    'blog_articles.art_author',
-                    'blog_articles.art_title',
-                    'blog_articles.art_time',
-                    'blog_articles.art_view',
-                    'blog_articles.is_show',
-                    'blog_articles.is_pass'
-                  )
-            ->paginate(5);
+        $article=new Article();
+        $data=$article->getCate();
        return view('admin.article.index',compact('data'));
     }
 
@@ -133,11 +123,12 @@ class ArticleController extends CommonController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @Desc:更新
+     * @author:guomin
+     * @date:2017-10-07 15:24
+     * @param Request $request
+     * @param $id
+     * @return array
      */
     public function update(Request $request, $id)
     {

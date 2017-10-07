@@ -74,8 +74,8 @@ class LinksController extends Controller
             }
             return $data;
         }else{
-            $errors=$validator->errors()->all();
-            $error=implode(',',$errors);
+            $errors=collect($validator->errors()->all());
+            $error=$errors->implode(',');
             $data=[
                 'status'=>0,
                 'msg'=>$error
