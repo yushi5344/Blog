@@ -25,7 +25,7 @@ class WechatController extends Controller
             $tmpStr = sha1( $tmpStr );//shal加密
             //tmpStr与signature值相同，返回真，否则返回假
             if( $tmpStr == $signature ){
-                echo $_GET["echostr"];;
+                echo $_GET["echostr"];
             }else{
                 return false;
             }
