@@ -11,14 +11,8 @@ class WechatController extends Controller
 {
     //
     const TOKEN='guomin';
-    public function __construct()
-    {
 
-        $this->check();
-    }
-
-
-    private function check(){
+    public function index(){
         if(isset($_GET["signature"])&&isset($_GET["timestamp"])&&isset($_GET["nonce"])&&isset($_GET["echostr"])){
             $signature = $_GET["signature"];//从用户端获取签名赋予变量signature
             $timestamp = $_GET["timestamp"];//从用户端获取时间戳赋予变量timestamp

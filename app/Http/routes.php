@@ -19,7 +19,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
 
 });
 
-Route::get('/check','WechatController@Wechat');
+Route::resource('/check','WechatController');
 Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台登录
     Route::any('/login','LoginController@login');
