@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class WechatController extends Controller
 {
@@ -74,7 +75,21 @@ class WechatController extends Controller
             exit;
         }
     }
-
+    public function create(){
+        if(Cache::has(env('APPID'))){
+            $access=Cache::get(env('APPID'));
+        }else{
+            $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('APPID')."&secret=".env('APPSECRET');
+            $data=$this->curl($url);
+            $data=json_decode($data,true);
+            if(isset($data['errcode'])){
+                return false;
+            }
+            Cache::put(env('APPID'),$data['access_token'],$data['expires_in']);
+            $access=$data['access_token'];
+        }
+        print_r($access);
+    }
     private function responseText($obj){
         $contentStr="您发送的是文本，内容为：".$obj->Content;
         $result=$this->transmitText($obj,$contentStr);
@@ -132,5 +147,22 @@ class WechatController extends Controller
         }else{
             echo "Input something...";//不发送到微信端，只是测试使用
         }
+    }
+    private function curl($url,$fields=[]){
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
+        if($fields){
+            curl_setopt($ch,CURLOPT_TIMEOUT,30);
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
+        }
+        if(curl_exec($ch)){
+            $data=curl_multi_getcontent($ch);
+        }
+        curl_close($ch);
+        return $data;
     }
 }
