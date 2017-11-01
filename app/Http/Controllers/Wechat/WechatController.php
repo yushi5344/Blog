@@ -105,8 +105,22 @@ class WechatController extends Controller
 aaa;
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access;
         $result=$this->curl($url,$data);
+        return $result;
+    }
+
+
+    /**
+     * @Desc:删除菜单
+     * @author:guomin
+     * @date:2017-11-01 23:17
+     */
+    public function show($id){
+        $access=$this->getAccess();
+        $url="https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=".$access;
+        $result=$this->curl($url);
         print_r($result);
     }
+
     private function responseText($obj){
         $contentStr="您发送的是文本，内容为：".$obj->Content;
         $result=$this->transmitText($obj,$contentStr);
