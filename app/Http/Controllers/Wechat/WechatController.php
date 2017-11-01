@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
@@ -47,10 +48,10 @@ class WechatController extends Controller
 
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);//将postStr变量进行解析并赋予变量postObj。simplexml_load_string（）函数是php中一个解析XML的函数，SimpleXMLElement为新对象的类，LIBXML_NOCDATA表示将CDATA设置为文本节点，CDATA标签中的文本XML不进行解析
             $RX_TYPE = trim($postObj->MsgType);
-//            $wechat_user=[];
-//            $wechat_user['user_name']=$RX_TYPE;
-//            Wechat_user::create($wechat_user);
-            log::info($RX_TYPE);
+            $wechat_user=[];
+            $wechat_user['user_name']=$RX_TYPE;
+            Wechat_user::create($wechat_user);
+            Log::info($RX_TYPE);
             switch($RX_TYPE){
                 case 'text':
                     $result=$this->responseText($postObj);
