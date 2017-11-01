@@ -76,19 +76,41 @@ class WechatController extends Controller
         }
     }
     public function create(){
-        if(Cache::has(env('APPID'))){
-            $access=Cache::get(env('APPID'));
-        }else{
-            $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('APPID')."&secret=".env('APPSECRET');
-            $data=$this->curl($url);
-            $data=json_decode($data,true);
-            if(isset($data['errcode'])){
-                return false;
-            }
-            Cache::put(env('APPID'),$data['access_token'],$data['expires_in']);
-            $access=$data['access_token'];
-        }
-        print_r($access);
+        $access=$this->getAccess();
+        $data=<<<aaa
+            {
+                 "button":[
+                 {
+                      "type":"click",
+                      "name":"今日歌曲",
+                      "key":"V1001_TODAY_MUSIC"
+                  },
+                  {
+                       "name":"菜单",
+                       "sub_button":[
+                       {
+                           "type":"view",
+                           "name":"搜索",
+                           "url":"http://www.soso.com/"
+                        },
+                        {
+                             "type":"miniprogram",
+                             "name":"wxa",
+                             "url":"http://mp.weixin.qq.com",
+                             "appid":"wx286b93c14bbf93aa",
+                             "pagepath":"pages/lunar/index"
+                         },
+                        {
+                           "type":"click",
+                           "name":"赞一下我们",
+                           "key":"V1001_GOOD"
+                        }]
+                   }]
+             }
+aaa;
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access;
+        $result=$this->curl($url,$data);
+        print_r($result);
     }
     private function responseText($obj){
         $contentStr="您发送的是文本，内容为：".$obj->Content;
@@ -164,5 +186,21 @@ class WechatController extends Controller
         }
         curl_close($ch);
         return $data;
+    }
+
+    private function getAccess(){
+        if(Cache::has(env('APPID'))){
+            $access=Cache::get(env('APPID'));
+        }else{
+            $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('APPID')."&secret=".env('APPSECRET');
+            $data=$this->curl($url);
+            $data=json_decode($data,true);
+            if(isset($data['errcode'])){
+                return false;
+            }
+            Cache::put(env('APPID'),$data['access_token'],$data['expires_in']);
+            $access=$data['access_token'];
+        }
+        return $access;
     }
 }
