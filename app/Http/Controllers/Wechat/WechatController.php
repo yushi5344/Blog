@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Wechat;
 
+use App\Http\Model\Wechat_user;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -64,6 +65,9 @@ class WechatController extends Controller
                     break;
                 case 'link':
                     $result=$this->responseLink($postObj);
+                    break;
+                case 'event':
+                    $result=$this->responseEvent($postObj);
                     break;
                 default:
                     $result="未知消息类型".$RX_TYPE;
@@ -156,6 +160,21 @@ aaa;
         return $result;
     }
 
+    private function responseEvent($obj){
+        if($obj->Evnet=='subscribe'){
+            $user=Wechat_user::where('user_name',$obj->FromUserName)->first();
+            if($user){
+                $contentStr="欢迎回来";
+            }else{
+                $contentStr="感谢关注";
+                $wechat_user=[];
+                $wechat_user['user_name']=$obj->FromUserName;
+                Wechat_user::create($wechat_user);
+            }
+        }
+        $result=$this->transmitText($obj,$contentStr);
+        return $result;
+    }
     private function transmitText($obj,$content){
         $fromUsername = $obj->FromUserName;//将微信用户端的用户名赋予变量FromUserName
         $toUsername = $obj->ToUserName;//将你的微信公众账号ID赋予变量ToUserName
