@@ -161,7 +161,7 @@ aaa;
     }
 
     private function responseEvent($obj){
-        if($obj->Evnet=='subscribe'){
+        if($obj->Event=='subscribe'){
             $user=Wechat_user::where('user_name',$obj->FromUserName)->first();
             if($user){
                 $contentStr="欢迎回来";
