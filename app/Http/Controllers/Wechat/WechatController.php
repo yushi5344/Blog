@@ -79,34 +79,29 @@ class WechatController extends Controller
         $access=$this->getAccess();
         $data=<<<aaa
             {
-                 "button":[
-                 {
-                      "type":"click",
-                      "name":"今日歌曲",
-                      "key":"V1001_TODAY_MUSIC"
-                  },
-                  {
-                       "name":"菜单",
-                       "sub_button":[
-                       {
-                           "type":"view",
-                           "name":"搜索",
-                           "url":"http://www.soso.com/"
-                        },
-                        {
-                             "type":"miniprogram",
-                             "name":"wxa",
-                             "url":"http://mp.weixin.qq.com",
-                             "appid":"wx286b93c14bbf93aa",
-                             "pagepath":"pages/lunar/index"
-                         },
-                        {
-                           "type":"click",
-                           "name":"赞一下我们",
-                           "key":"V1001_GOOD"
-                        }]
-                   }]
-             }
+                "button":[
+                    {
+                        "name":"测试1",
+                        "sub_button":[
+                            {
+                            "type":"click",
+                            "name":"子菜单名1",
+                            "key":"name1"
+                            },
+                            {
+                            "type":"click",
+                            "name":"子菜单名2",
+                            "key":"name2"
+                            }
+                        ]
+                    },
+                    {
+                    "type":"view",
+                    "name":"aboutus",
+                    "url":"http://www.baidu.com"
+                    }
+                ]
+            }
 aaa;
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access;
         $result=$this->curl($url,$data);
