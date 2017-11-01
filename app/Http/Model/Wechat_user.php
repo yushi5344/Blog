@@ -10,4 +10,5 @@ class Wechat_user extends Model
     protected $table='blog_wechat_user';
     protected $primaryKey='user_id';
     public $timestamps=false;
+    protected $guarded=[];
 }
