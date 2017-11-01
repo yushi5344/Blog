@@ -163,6 +163,7 @@ aaa;
 
     private function responseEvent($obj){
         if($obj->Event=='subscribe'){
+            $contentStr='';
             $user=Wechat_user::where('user_name',$obj->FromUserName)->first();
             if($user){
                 $contentStr="欢迎回来";
@@ -172,9 +173,10 @@ aaa;
                 $wechat_user['user_name']=$obj->FromUserName;
                 Wechat_user::create($wechat_user);
             }
+            $result=$this->transmitText($obj,$contentStr);
+            return $result;
         }
-        $result=$this->transmitText($obj,$contentStr);
-        return $result;
+
     }
     private function transmitText($obj,$content){
         $fromUsername = $obj->FromUserName;//将微信用户端的用户名赋予变量FromUserName
