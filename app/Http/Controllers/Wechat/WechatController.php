@@ -49,7 +49,7 @@ class WechatController extends Controller
                 case 'text':
                     $result=$this->responseText($postObj);
                     break;
-                case 'imgae':
+                case 'image':
                     $result=$this->responeImage($postObj);
                     break;
                 case 'voice':
