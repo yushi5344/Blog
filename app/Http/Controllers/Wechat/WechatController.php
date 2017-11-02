@@ -181,7 +181,7 @@ aaa;
     private function transmitText($obj,$content){
         $fromUsername = $obj->FromUserName;//将微信用户端的用户名赋予变量FromUserName
         $toUsername = $obj->ToUserName;//将你的微信公众账号ID赋予变量ToUserName
-        $keyword = trim($obj->Content);//将用户微信发来的文本内容去掉空格后赋予变量keyword
+        //$keyword = trim($obj->Content);//将用户微信发来的文本内容去掉空格后赋予变量keyword
         $time = time();//将系统时间赋予变量time
         //构建XML格式的文本赋予变量textTpl，注意XML格式为微信内容固定格式，详见文档
         $textTpl = "<xml>
@@ -192,14 +192,9 @@ aaa;
                             <Content><![CDATA[%s]]></Content>
                             <FuncFlag>0</FuncFlag>
                             </xml>";
-        if(!empty( $keyword ))//如果用户端微信发来的文本内容不为空，执行46--51否则52--53
-        {
-            $msgType = "text";//回复文本信息类型为text型，变量类型为msgType
-            $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);//将XML格式中的变量分别赋值。注意sprintf函数
-            return $resultStr;//输出回复信息，即发送微信
-        }else{
-            echo "Input something...";//不发送到微信端，只是测试使用
-        }
+        $msgType = "text";//回复文本信息类型为text型，变量类型为msgType
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);//将XML格式中的变量分别赋值。注意sprintf函数
+        return $resultStr;//输出回复信息，即发送微信
     }
     private function curl($url,$fields=[]){
         $ch=curl_init();
