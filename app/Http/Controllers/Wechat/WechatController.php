@@ -164,13 +164,13 @@ aaa;
     private function responseEvent($obj){
         if($obj->Event=='subscribe'){
             $contentStr='';
-            $user=Wechat_user::where('user_name',$obj->FromUserName)->first();
+            $user=Wechat_user::where('openId',$obj->FromUserName)->first();
             if($user){
                 $contentStr="欢迎回来";
             }else{
                 $contentStr="感谢关注";
                 $wechat_user=[];
-                $wechat_user['user_name']=$obj->FromUserName;
+                $wechat_user['openId']=$obj->FromUserName;
                 Wechat_user::create($wechat_user);
             }
             $result=$this->transmitText($obj,$contentStr);
