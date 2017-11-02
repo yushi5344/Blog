@@ -18,6 +18,7 @@ class AlterBlogWechatUserTable extends Migration
             $table->integer('sex');
             $table->string('language');
             $table->string('city');
+            $table->string('province');
             $table->string('country');
             $table->string('headimgurl');
             $table->string('subscribe_time');

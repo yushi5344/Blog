@@ -170,8 +170,13 @@ aaa;
             }else{
                 $contentStr="感谢关注";
                 $wechat_user=[];
-                $wechat_user['openId']=$obj->FromUserName;
-                Wechat_user::create($wechat_user);
+                $wechat_user=$this->getInfo($obj->FromUserName);
+                if($wechat_user){
+                    $wechat_user['openId']=$obj->FromUserName;
+                    Wechat_user::create($wechat_user);
+                } else{
+                    Wechat_user::create(['openId'=>$obj->FromUserName]);
+                }
             }
             $result=$this->transmitText($obj,$contentStr);
             return $result;
