@@ -28,7 +28,8 @@ Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('/code','LoginController@code');
 });
 
-
+//获取用户信息
+Route::get('/getuser','Wechat\WechatController@getUserInfo');
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台首页
     Route::get('/index','IndexController@index');

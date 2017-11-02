@@ -229,4 +229,28 @@ aaa;
         }
         return $access;
     }
+
+    public function getUserInfo(){
+        $user=Wechat_user::all('openId');
+        $a=[];
+        $user=$user->toArray();
+        foreach($user as $key=>$value){
+            $result=$this->getInfo($value['openId']);
+            if($result){
+               Wechat_user::where('openId',$value['openId'])->update($result);
+            }
+        }
+    }
+
+    private function getInfo($openId){
+        $access=$this->getAccess();
+        $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access."&openid=".$openId."&lang=zh_CN";
+        $result=$this->curl($url);
+        $data=json_decode($result,true);
+        if(isset($data['errcode'])){
+            return false;
+        }else{
+            return $data;
+        }
+    }
 }
