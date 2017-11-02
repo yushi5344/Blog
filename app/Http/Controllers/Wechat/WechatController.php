@@ -240,9 +240,6 @@ aaa;
                Wechat_user::where('openId',$value['openId'])->update($result);
             }
         }
-        Cache::forget(env('APPID'));
-//        $result=$this->getInfo($a[0]);
-//        print_r($result);
     }
 
     private function getInfo($openId){
@@ -253,7 +250,16 @@ aaa;
         if(isset($data['errcode'])){
             return false;
         }else{
-            return $data;
+            $res=[];
+            $res['nickname']=$data['nickname'];
+            $res['sex']=$data['sex'];
+            $res['language']=$data['language'];
+            $res['city']=$data['city'];
+            $res['province']=$data['province'];
+            $res['country']=$data['country'];
+            $res['headimgurl']=$data['headimgurl'];
+            $res['subscribe_time']=$data['subscribe_time'];
+            return $res;
         }
     }
 }
