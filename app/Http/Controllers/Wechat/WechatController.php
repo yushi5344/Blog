@@ -224,7 +224,7 @@ aaa;
             if(isset($data['errcode'])){
                 return false;
             }
-            Cache::put(env('APPID'),$data['access_token'],$data['expires_in']);
+            Cache::put(env('APPID'),$data['access_token'],$data['expires_in']/60);
             $access=$data['access_token'];
         }
         return $access;
@@ -240,6 +240,9 @@ aaa;
                Wechat_user::where('openId',$value['openId'])->update($result);
             }
         }
+        Cache::forget(env('APPID'));
+//        $result=$this->getInfo($a[0]);
+//        print_r($result);
     }
 
     private function getInfo($openId){
