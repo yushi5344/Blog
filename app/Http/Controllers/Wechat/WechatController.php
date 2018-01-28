@@ -131,7 +131,7 @@ aaa;
             $contentStr="您发送的是自定义表情。";
             $result=$this->transmitText($obj,$contentStr);
         }elseif($obj->Content==trim('亲密爱人')){
-            $result=$this->transmitText($obj,'亲密爱人');
+            $result=$this->transmitMusic($obj,'亲密爱人');
         }else{
             $contentStr="您发送的是文本，内容为：".$obj->Content;
             $result=$this->transmitText($obj,$contentStr);
