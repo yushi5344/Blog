@@ -104,6 +104,11 @@ class WechatController extends Controller
                     "type":"view",
                     "name":"aboutus",
                     "url":"http://www.baidu.com"
+                    },
+                    {
+                    "type":"view",
+                    "name":"今日歌曲",
+                    "url":"http://music.163.com/#/song?id=276146"
                     }
                 ]
             }
@@ -129,13 +134,10 @@ aaa;
     private function responseText($obj){
         if($obj->Content==trim('【收到不支持的消息类型，暂无法显示】')){
             $contentStr="您发送的是自定义表情。";
-            $result=$this->transmitText($obj,$contentStr);
-        }elseif($obj->Content==trim('亲密爱人')){
-            $result=$this->transmitMusic($obj,'亲密爱人');
         }else{
             $contentStr="您发送的是文本，内容为：".$obj->Content;
-            $result=$this->transmitText($obj,$contentStr);
         }
+        $result=$this->transmitText($obj,$contentStr);
         return $result;
     }
 
@@ -199,19 +201,19 @@ aaa;
         $time = time();//将系统时间赋予变量time
         //构建XML格式的文本赋予变量textTpl，注意XML格式为微信内容固定格式，详见文档
         $textTpl = "<xml>
-                    <ToUserName>< ![CDATA[%s] ]></ToUserName>
-                    <FromUserName>< ![CDATA[%s] ]></FromUserName>
-                    <CreateTime>%s</CreateTime>
-                    <MsgType>< ![CDATA[music] ]></MsgType>
-                    <Music>
-                        <Title>< ![CDATA[%s] ]></Title>
-                        <Description>< ![CDATA[%s] ]></Description>
-                        <MusicUrl>< ![CDATA[%s] ]></MusicUrl>
-                        <HQMusicUrl>< ![CDATA[%s] ]></HQMusicUrl>
-                        <ThumbMediaId>< ![CDATA[%s] ]></ThumbMediaId>
-                    </Music>
+                        <ToUserName>< ![CDATA[%s] ]></ToUserName>
+                        <FromUserName>< ![CDATA[%s] ]></FromUserName>
+                        <CreateTime>%s</CreateTime>
+                        <MsgType>< ![CDATA[music] ]></MsgType>
+                        <Music>
+                            <Title>< ![CDATA[%s] ]></Title>
+                            <Description>< ![CDATA[%s] ]></Description>
+                            <MusicUrl>< ![CDATA[%s] ]></MusicUrl>
+                            <HQMusicUrl>< ![CDATA[%s] ]></HQMusicUrl>
+                            <ThumbMediaId>< ![CDATA[%s] ]></ThumbMediaId>
+                        </Music>
                     </xml>";
-        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, '亲密爱人','音乐最前线','http://music.163.com/#/song?id=276146','http://music.163.com/#/song?id=276146','');//将XML格式中的变量分别赋值。注意sprintf函数
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, '亲密爱人','测试','http://music.163.com/#/song?id=276146','http://music.163.com/#/song?id=276146','');//将XML格式中的变量分别赋值。注意sprintf函数
         return $resultStr;//输出回复信息，即发送微信
     }
     private function transmitText($obj,$content){
@@ -232,6 +234,15 @@ aaa;
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);//将XML格式中的变量分别赋值。注意sprintf函数
         return $resultStr;//输出回复信息，即发送微信
     }
+
+    /**
+     * @Desc:
+     * @author:guomin
+     * @date:
+     * @param $url
+     * @param array $fields
+     * @return string
+     */
     private function curl($url,$fields=[]){
         $ch=curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -250,6 +261,12 @@ aaa;
         return $data;
     }
 
+    /**
+     * @Desc:
+     * @author:guomin
+     * @date:
+     * @return bool
+     */
     private function getAccess(){
         if(Cache::has(env('APPID'))){
             $access=Cache::get(env('APPID'));
