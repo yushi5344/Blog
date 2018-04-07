@@ -19,9 +19,9 @@ class MuiController extends Controller
         //
         $data=[
             'status'=>1,
-            'msg'=>'请求成功'
+            'msg'=>'index方法请求成功'
         ];
-        return $data;
+        return json_encode($data);
     }
 
     /**
@@ -32,6 +32,11 @@ class MuiController extends Controller
     public function create()
     {
         //
+        $data=[
+            'status'=>1,
+            'msg'=>'GET请求成功'
+        ];
+        return json_encode($data);
     }
 
     /**
@@ -43,6 +48,11 @@ class MuiController extends Controller
     public function store(Request $request)
     {
         //
+        $data=[
+            'status'=>1,
+            'msg'=>'POST方式请求成功'
+        ];
+        return json_encode($data);
     }
 
     /**
@@ -54,6 +64,11 @@ class MuiController extends Controller
     public function show($id)
     {
         //
+        $data=[
+            'status'=>1,
+            'msg'=>'GET请求成功'
+        ];
+        return json_encode($data);
     }
 
     /**
@@ -77,6 +92,11 @@ class MuiController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data=[
+            'status'=>1,
+            'msg'=>'PUT方式请求成功'
+        ];
+        return json_encode($data);
     }
 
     /**
@@ -88,5 +108,10 @@ class MuiController extends Controller
     public function destroy($id)
     {
         //
+        $data=[
+            'status'=>1,
+            'msg'=>'DELETE请求成功'
+        ];
+        return json_encode($data);
     }
 }
