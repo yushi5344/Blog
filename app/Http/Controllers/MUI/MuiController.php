@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\URL;
 
 class MuiController extends Controller
 {
@@ -14,12 +15,14 @@ class MuiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $data=[
             'status'=>1,
-            'msg'=>'index方法请求成功'
+            'msg'=>'index方法请求成功',
+            'url'=>URL::full(),
+            'method'=>$request->method()
         ];
         return $data;
     }
@@ -50,7 +53,9 @@ class MuiController extends Controller
         //
         $data=[
             'status'=>1,
-            'msg'=>'POST方式请求成功'
+            'msg'=>'POST方式请求成功',
+            'url'=>URL::full(),
+            'method'=>$request->method()
         ];
         return $data;
     }
@@ -94,7 +99,9 @@ class MuiController extends Controller
         //
         $data=[
             'status'=>1,
-            'msg'=>'PUT方式请求成功'
+            'msg'=>'PUT方式请求成功',
+            'url'=>URL::full(),
+            'method'=>$request->method()
         ];
         return $data;
     }
@@ -105,12 +112,14 @@ class MuiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
         $data=[
             'status'=>1,
-            'msg'=>'DELETE请求成功'
+            'msg'=>'DELETE请求成功',
+            'url'=>URL::full(),
+            'method'=>$request->method()
         ];
         return $data;
     }
