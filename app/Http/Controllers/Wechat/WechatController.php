@@ -91,20 +91,20 @@ class WechatController extends Controller
                         "sub_button":[
                             {
                             "type":"click",
-                            "name":"子菜单名1",
+                            "name":"子菜单1",
                             "key":"name1"
                             },
                             {
                             "type":"click",
-                            "name":"子菜单名2",
+                            "name":"子菜单2",
                             "key":"name2"
                             }
                         ]
                     },
                     {
                     "type":"view",
-                    "name":"aboutus",
-                    "url":"http://www.baidu.com"
+                    "name":"aboutme",
+                    "url":"http://47.95.218.48/"
                     },
                     {
                     "type":"view",
@@ -200,10 +200,10 @@ aaa;
             }
             $b=array_rand($name1);
             if($obj->EventKey=='name1'){
-                $str="您点击了菜单1";
+                $str="您点击了菜单1,";
                 $str .="这个菜单可以随机显示文章标题：".$name1[$b];
             }elseif($obj->EventKey=='name2'){
-                $str="您点击了菜单2";
+                $str="您点击了菜单2,";
                 $str .="这个菜单可以随机显示文章标签：".$name2[$b];
             }
             $result=$this->transmitText($obj,$str);
