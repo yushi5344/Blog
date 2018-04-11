@@ -191,12 +191,20 @@ aaa;
             $result=$this->transmitText($obj,$contentStr);
             return $result;
         }elseif($obj->Event=='CLICK'){
+            $article=Article::where('art_pid',1)->orderBy('art_id','desc')->take(10)->get();
+            $name1=array();
+            $name2=array();
+            foreach($article as $key=>$v){
+                $name1[]=$v['art_title'];
+                $name2[]=$v['art_tag'];
+            }
+            $b=array_rand($name1);
             if($obj->EventKey=='name1'){
                 $str="您点击了菜单1";
-                $article=Article::where('art_pid',1)->orderBy('art_id','desc')->take(10)->get();
-                Log::info($article);
+                $str .="随机显示文章标题：".$name1[$b];
             }elseif($obj->EventKey=='name2'){
                 $str="您点击了菜单2";
+                $str .="随机显示文章标签：".$name2[$b];
             }
             $result=$this->transmitText($obj,$str);
             return $result;
