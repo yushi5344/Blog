@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Wechat;
 
+use App\Http\Model\Article;
 use App\Http\Model\Wechat_user;
 use Illuminate\Http\Request;
 
@@ -188,6 +189,16 @@ aaa;
                 }
             }
             $result=$this->transmitText($obj,$contentStr);
+            return $result;
+        }elseif($obj->Event=='CLICK'){
+            if($obj->EventKey=='name1'){
+                $str="您点击了菜单1";
+                $article=Article::where('art_pid',1)->orderBy('art_id','desc')->take(10)->get();
+                Log::info($article);
+            }elseif($obj->EventKey=='name2'){
+                $str="您点击了菜单2";
+            }
+            $result=$this->transmitText($obj,$str);
             return $result;
         }
 
