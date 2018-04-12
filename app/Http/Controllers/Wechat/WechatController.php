@@ -314,6 +314,27 @@ aaa;
         }
     }
 
+    /**
+     * @Desc:获取微信素材列表
+     * @author:guomin
+     * @date:2018-04-12 21:45
+     */
+    public function material(){
+        $access=$this->getAccess();
+        $data=<<<aaa
+            {
+                "type":news,
+                "offset":0,
+                "count":2
+            }
+aaa;
+        $url="https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=".$access;
+        $result=$this->curl($url,$data);
+        dd($result);
+        return $result;
+
+
+    }
     private function getInfo($openId){
         $access=$this->getAccess();
         $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access."&openid=".$openId."&lang=zh_CN";

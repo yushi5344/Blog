@@ -20,6 +20,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
 });
 
 Route::resource('/check','Wechat\WechatController');
+Route::get('/check/material','Wechat\WechatController@material');
 Route::resource('/MUI','MUI\MuiController');
 Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台登录
