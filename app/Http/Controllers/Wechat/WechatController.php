@@ -137,11 +137,33 @@ aaa;
             $contentStr="您发送的是自定义表情。";
         }else{
             $contentStr="您发送的是文本，内容为：".$obj->Content;
+            $this->getTulLing($obj->Content,$obj->FromUserName);
         }
         $result=$this->transmitText($obj,$contentStr);
         return $result;
     }
 
+    private function getTulLing($text,$openId){
+        $url="http://openapi.tuling123.com/openapi/api/v2";
+        $apiKey=env('TULING_APIKEY');
+        $data=<<<data
+            {
+                "reqType":0,
+                "perception": {
+                    "inputText": {
+                        "text": "$text"
+                    }
+                },
+                "userInfo": {
+                    "apiKey": "$apiKey",
+                    "userId": "$openId"
+                }
+            }
+data;
+        $result=$this->curl($url,$data);
+        $result=json_decode($result,true);
+        Log::info($result);
+    }
     private function responeImage($obj){
         $contentStr="您发送的是图片，地址为：".$obj->PicUrl;
         $result=$this->transmitText($obj,$contentStr);
