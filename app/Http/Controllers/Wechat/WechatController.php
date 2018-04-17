@@ -136,8 +136,7 @@ aaa;
         if($obj->Content==trim('【收到不支持的消息类型，暂无法显示】')){
             $contentStr="您发送的是自定义表情。";
         }else{
-            $contentStr="您发送的是文本，内容为：".$obj->Content;
-            $this->getTulLing($obj->Content,$obj->FromUserName);
+            $contentStr= $this->getTulLing($obj->Content,$obj->FromUserName);
         }
         $result=$this->transmitText($obj,$contentStr);
         return $result;

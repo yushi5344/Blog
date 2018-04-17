@@ -21,7 +21,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
 
 Route::resource('/check','Wechat\WechatController');
 Route::get('/material','Wechat\WechatController@material');
-Route::get('/tuling','Wechat\WechatController@getTulLing');
+//Route::get('/tuling','Wechat\WechatController@getTulLing');
 Route::resource('/MUI','MUI\MuiController');
 Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台登录
