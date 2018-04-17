@@ -162,7 +162,7 @@ aaa;
 data;
         $result=$this->curl($url,$data);
         $result=json_decode($result,true);
-        Log::info($result);
+        return$result['results'][0]['values']['text'];
     }
     private function responeImage($obj){
         $contentStr="您发送的是图片，地址为：".$obj->PicUrl;
