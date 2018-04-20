@@ -23,10 +23,23 @@ class ExcelController extends Controller
         $keys[]=$key;
         $data=array_merge($keys,$data);
         Excel::create('人物',function($excel) use($data){
-            $excel->sheet('score',function($sheet)use ($data){
+            $excel->sheet('联系方式',function($sheet)use ($data){
                 $sheet->rows($data);
             });
         })->export('xls');
+
+    }
+
+    //导入
+    public function import(){
+        $filePath='upload/'.iconv('UTF-8','GBK','aa').'.xls';
+        $reader=Excel::load($filePath);
+        $data=$reader->all();
+        $sheet=[];
+        $array=$data->toArray();
+        $ac=$array[0];
+        $bd=$array[1];
+        dd($ac);
 
     }
 }
