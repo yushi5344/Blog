@@ -18,9 +18,9 @@ Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
     Route::get('/cate/{cate_id}', 'ArticleController@cate');
 
 });
-Route::get('/export','Excel\ExcelController@export');
+//Route::get('/export','Excel\ExcelController@export');
 
-Route::get('/import','Excel\ExcelController@import');
+//Route::get('/import','Excel\ExcelController@import');
 
 Route::resource('/check','Wechat\WechatController');
 Route::get('/material','Wechat\WechatController@material');
@@ -49,6 +49,7 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
     Route::resource('/category','CategoryController');
     //文章管理
     Route::resource('/article','ArticleController');
+    Route::resource('/excelsheet','ExcelSheetController');
     //修改分类排序
     Route::get('/changeOrder/{cate_id}/cate_order/{cate_order}','CategoryController@changeOrder');
     //上传图片

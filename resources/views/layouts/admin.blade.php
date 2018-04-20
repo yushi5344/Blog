@@ -148,16 +148,10 @@
             </dd>
         </dl>
         <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe61a;</i> 报表管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="charts-1.html" title="折线图">折线图</a></li>
-                    <li><a href="charts-2.html" title="时间轴折线图">时间轴折线图</a></li>
-                    <li><a href="charts-3.html" title="区域图">区域图</a></li>
-                    <li><a href="charts-4.html" title="柱状图">柱状图</a></li>
-                    <li><a href="charts-5.html" title="饼状图">饼状图</a></li>
-                    <li><a href="charts-6.html" title="3D柱状图">3D柱状图</a></li>
-                    <li><a href="charts-7.html" title="3D饼状图">3D饼状图</a></li>
+                    <li><a href="{{url('admin/excelsheet')}}" title="报表管理">报表管理</a></li>
                 </ul>
             </dd>
         </dl>
