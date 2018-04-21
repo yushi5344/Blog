@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Log;
+use Excel;
+use App\Http\Model\Excel as MExcel;
 class ExcelSheetController extends CommonController
 {
     /**
@@ -82,5 +83,22 @@ class ExcelSheetController extends CommonController
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @desc 导入excel
+     * @author guomin
+     * @date 2018/4/21  7:59
+     */
+    public function import(){
+        $filePath=$this->upload();
+        Log::info($filePath);
+        $reader=Excel::load($filePath);
+        $data=$reader->all();
+        $array=$data->toArray();
+        $data=[
+            'content'=>json_encode($array)
+        ];
+        MExcel::create($data);
     }
 }

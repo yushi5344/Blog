@@ -54,6 +54,8 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=
     Route::get('/changeOrder/{cate_id}/cate_order/{cate_order}','CategoryController@changeOrder');
     //上传图片
     Route::any('/upload','CommonController@upload');
+    //导入excel
+    Route::any('/import','ExcelSheetController@import');
     //文章审核
     Route::get('/shenhe/{art_id}','ArticleController@shenhe');
     //文章上架
