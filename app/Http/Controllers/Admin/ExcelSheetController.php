@@ -16,7 +16,8 @@ class ExcelSheetController extends CommonController
     public function index()
     {
         //
-        return view('admin.excelsheet.index');
+        $data=MExcel::orderBy('created_at','desc')->paginate(5);
+        return view('admin.excelsheet.index',compact('data'));
     }
 
     /**

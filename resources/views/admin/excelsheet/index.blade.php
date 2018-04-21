@@ -32,7 +32,7 @@
 
 				<a class="btn btn-primary radius" data-title="导入"  onclick="importExcel()" ><i class="Hui-iconfont">&#xe645;</i> 导入</a>
 				</span>
-                    <span class="r">共有数据：<strong></strong> 条</span>
+                    <span class="r">共有数据：<strong>{{$data->total()}}</strong> 条</span>
                 </div>
                 <div class="mt-20">
                     <div id="filePicker"></div>
@@ -41,7 +41,7 @@
                         <tr class="text-c">
                             <th width="25"><input type="checkbox" name="" value=""></th>
                             <th width="80">ID</th>
-                            <th>标题</th>
+                            <th>内容</th>
                             <th width="80">分类</th>
                             <th width="80">作者</th>
                             <th width="120">编辑时间</th>
@@ -51,12 +51,23 @@
                         </tr>
                         </thead>
                         <tbody>
-
-
-
+                            @foreach($data as $v)
+                                <tr class="text-c">
+                                    <td><input type="checkbox" value="" name=""></td>
+                                    <td>{{$v->id}}</td>
+                                    <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{mb_substr($v->content,1,50)}}</u></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="td-status"> </td>
+                                    <td class="f-14 td-manage"></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+                {{$data->links()}}
             </article>
         </div>
     </section>
