@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
@@ -21,5 +17,12 @@ class MailController extends Controller
         }else{
             echo '发送邮件失败，请重试！';
         }
+    }
+
+    public function sendText(){
+        Mail::raw('今天是星期一了，明天就星期二了。', function ($message) {
+            $to = '424239968@qq.com';
+            $message ->to($to)->subject('今天是星期一');
+        });
     }
 }
