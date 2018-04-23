@@ -27,6 +27,7 @@ Route::get('/material','Wechat\WechatController@material');
 Route::get('/sendMail','Admin\MailController@index');
 Route::get('/sendText','Admin\MailController@sendText');
 Route::get('/sendMailWithAttachment','Admin\MailController@sendMailWithAttachment');
+Route::get('/sendMailWithPic','Admin\MailController@sendMailWithPic');
 //Route::get('/tuling','Wechat\WechatController@getTulLing');
 Route::resource('/MUI','MUI\MuiController');
 Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'],function(){

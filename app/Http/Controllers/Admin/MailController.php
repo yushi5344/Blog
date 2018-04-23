@@ -42,4 +42,18 @@ class MailController extends Controller
             echo '发送邮件失败，请重试！';
         }
     }
+
+
+    public function sendMailWithPic(){
+        $name = '李四兄弟';
+        $imgPath = 'upload/test.png';
+        $flag = Mail::send('email.send',['name'=>$name,'imgPath'=>$imgPath],function($message){
+            $to = '424239968@qq.com';
+            $message->to($to)->subject('我们永远在一起');
+
+            $attachment = storage_path('logs/laravel-2018-04-21.log');
+            //在邮件中上传附件
+            $message->attach($attachment,['as'=>"=?UTF-8?B?".base64_encode('这个是一个文档')."?=.log"]);
+        });
+    }
 }
