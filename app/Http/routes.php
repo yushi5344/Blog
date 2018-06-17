@@ -23,6 +23,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Home'],function(){
 //Route::get('/import','Excel\ExcelController@import');
 
 Route::resource('/check','Wechat\WechatController');
+Route::resource('/job','Home\IndexController@job');
 Route::get('/material','Wechat\WechatController@material');
 Route::get('/sendMail','Admin\MailController@index');
 Route::get('/sendText','Admin\MailController@sendText');

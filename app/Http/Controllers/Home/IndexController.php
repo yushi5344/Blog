@@ -86,4 +86,8 @@ class IndexController extends CommonController
     {
         //
     }
+
+    public function job(){
+	    return view('home.job');
+    }
 }
